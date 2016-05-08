@@ -62,7 +62,6 @@ void esempio_stampaElementi(int ordInverso)
 
 	__stampaLista(listesempio);
 
-	// distruggi la lista e libera la memoria heap occupata
 	lista_distruggi(listesempio);
 }
 
@@ -70,12 +69,10 @@ void esempio_generaTreElementiEdEliminaneUno()
 {
 	List listesempio = __inizializzaListaEsempio();
 
-	// rimuovo il secondo elemento dalla lista
 	lista_rimuoviElementoNesimo(listesempio, 2);
 
 	__stampaLista(listesempio);
 
-	// distruggi la lista e libera la memoria heap occupata
 	lista_distruggi(listesempio);
 }
 
@@ -94,7 +91,6 @@ void esempio_scambiaSecondoConTerzoElemento()
 		}
 	}
 
-	// distruggi la lista e libera la memoria heap occupata
 	lista_distruggi (listesempio);
 }
 
@@ -118,7 +114,6 @@ void esempio_modificaSecondoElemento()
 		}
 	}
 
-	// distruggi la lista e libera la memoria heap occupata
 	lista_distruggi(listesempio);
 }
 
@@ -136,7 +131,6 @@ void esempio_inserisciElementoInX(int posizione)
 
 	__stampaLista(listesempio);
 
-	// distruggi la lista e libera la memoria heap occupata
 	lista_distruggi(listesempio);
 }
 
@@ -148,7 +142,6 @@ void esempio_capovolgiLista()
 
 	__stampaLista(listesempio);
 
-	// distruggi la lista e libera la memoria heap occupata
 	lista_distruggi(listesempio);
 }
 
@@ -156,7 +149,7 @@ void esempio_cercaElemento()
 {
 	List listesempio = __inizializzaListaEsempio();
 
-	int pos = lista_cercaPerContenuto(listesempio, 0, (NodeData) {
+	int pos = lista_cercaPerContenuto(listesempio, (NodeData) {
 		.etichetta = "Esempio2",
 		.valore = 999
 	});

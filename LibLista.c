@@ -76,10 +76,7 @@ List lista_inserisciElementoInX(List lista, unsigned int X, NodeData contenuto)
 
 	X = X - i;
 	while (X--) {
-		lista = lista_aggiungiElemento(lista, (NodeData) {
-			.etichetta = (char*) NULL,
-			.valore = 0
-		});
+		lista = lista_aggiungiElemento(lista, (NodeData) {NULL});
 	}
 
 	lista = lista_aggiungiElemento(lista, contenuto);
@@ -113,7 +110,7 @@ int lista_rimuoviElementoNesimo(List lista, int n)
 int lista_modificaElementoNesimo(List lista, unsigned int X,
 				 NodeData nuovo_contenuto)
 {
-	unsigned int nElementi = lista_lunghezza (lista);
+	unsigned int nElementi = lista_lunghezza(lista);
 
 	for (unsigned int i = 1; i <= nElementi; i++) {
 		if (i == X) {
@@ -207,20 +204,29 @@ int lista_scambiaElementiXY(List lista, unsigned int X, unsigned int Y)
 	return ENOTFOUND;
 }
 
-unsigned int lista_cercaPerContenuto(List lista, int mode, NodeData contenuto)
+unsigned int lista_cercaPerContenuto(List lista, NodeData contenuto)
 {
 	List i = lista;
 	int	pos = 1,
-		verif_etichetta = (!mode || mode == 1) ? 1 : 0,
-		verif_valore 	= (!mode || mode == 2) ? 1 : 0;
+		simil = 0,
+		counter = 0,
+		maxCnt = 0;
 
 	do {
-		if ((!strcmp(contenuto.etichetta, i->contenuto.etichetta) ||
-		     !verif_etichetta) &&
-		    (contenuto.valore == i->contenuto.valore || !verif_valore))
-			return pos;
-		pos++;
-	} while((i = i->prossimoElemento) != NULL);
+		counter = 0;
 
-	return 0; // elemento non trovato
+		for (unsigned int j = 0; j < sizeof(NodeData); j++)
+			if ((((const unsigned char *) &i->contenuto)[j] & 0xFF)
+			    == (((const unsigned char *) &contenuto)[j] & 0xFF))
+				counter++;
+
+		if (counter > maxCnt) {
+			maxCnt = counter;
+			simil = pos;
+		}
+
+		pos++;
+	} while ((i = i->prossimoElemento) != NULL);
+
+	return simil;
 }

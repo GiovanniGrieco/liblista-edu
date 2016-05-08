@@ -151,12 +151,8 @@ int lista_scambiaElementiXY(List lista, unsigned int X, unsigned int Y);
 /* Cerca la posizione di un nodo nella lista
  * PARAMETRI:
  * - Lista interessata
- * - Modalità di ricerca
- * 	0 => tutti i membri della struttura NodeData devono essere uguali
- *	1 => l'etichetta deve essere uguale
- *	2 => il valore deve essere uguale
  * - Contenuto da ricercare
  * OUTPUT:
- * - Posizione del nodo all'interno della lista (0 per nodo non trovato)
+ * - Posizione del nodo più simile (o uguale) all'interno della lista
  */
-unsigned int lista_cercaPerContenuto(List lista, int mode, NodeData contenuto);
+unsigned int lista_cercaPerContenuto(List lista, NodeData contenuto);
