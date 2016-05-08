@@ -30,15 +30,11 @@
 
 List lista_aggiungiElemento(List lista, NodeData contenuto)
 {
-	// creo il nuovo elemento ed associo un proprio spazio nella memoria
 	List el_da_aggiungere = malloc(sizeof(ListNode));
 
-	// memorizzo i dati relativi all'elemento della lista nel nuovo spazio
-	// di memoria allocato
 	el_da_aggiungere->contenuto 		= contenuto;
 	el_da_aggiungere->prossimoElemento 	= lista;
 
-	// ritorno la nuova testa di lista
 	return el_da_aggiungere;
 }
 
