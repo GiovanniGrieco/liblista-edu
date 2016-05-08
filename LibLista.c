@@ -175,10 +175,35 @@ int lista_scambiaElementiXY(List lista, unsigned int X, unsigned int Y)
 	unsigned int	nElementi = lista_lunghezza(lista),
 			i = 1;
 
+	/*
+	 * Il primo ciclo serve per determinare se X o Y sono nodi validi,
+	 * perciò effettua lo scambio e continuerà nel secondo ciclo, dove
+	 * si cercherà il rimanente X o Y nodo. La combinazione di due cicli
+	 * invece di uno rende il control flow più veloce (meno istruzioni)
+	 * in caso in cui gli elementi non si trovino.
+	 */
 
+	do {
+		if (i == X || i == Y)
+			elemento_precedente = &lista->contenuto;
+
+		i++;
+		lista = lista->prossimoElemento;
+	} while (i <= nElementi && elemento_precedente == NULL);
+
+	while (i <= nElementi) {
 		if (i == X || i == Y) {
+			// creo un ausiliare temporaneo e ci copio il
+			// contenuto dell'elemento precedente
+			NodeData ausiliare = *elemento_precedente;
+			// procedo alla sostituzione
+			*elemento_precedente = lista->contenuto;
+			lista->contenuto = ausiliare;
+			// scambio effettuato, interrompo il ciclo
+			return SUCCESS;
 		}
 
+		i++;
 		lista = lista->prossimoElemento;
 	}
 
