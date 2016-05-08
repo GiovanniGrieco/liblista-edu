@@ -171,23 +171,12 @@ List lista_capovolgi(List lista)
 
 int lista_scambiaElementiXY(List lista, unsigned int X, unsigned int Y)
 {
-	unsigned int nElementi = lista_lunghezza(lista);
 	NodeData *elemento_precedente = NULL;
+	unsigned int	nElementi = lista_lunghezza(lista),
+			i = 1;
 
-	for (unsigned int i = 1; i <= nElementi; i++) {
+
 		if (i == X || i == Y) {
-			if (elemento_precedente == NULL) {
-				elemento_precedente = &lista->contenuto;
-			} else {
-				// creo un ausiliare temporaneo e ci copio il
-				// contenuto dell'elemento precedente
-				NodeData ausiliare = *elemento_precedente;
-				// procedo alla sostituzione
-				*elemento_precedente = lista->contenuto;
-				lista->contenuto = ausiliare;
-				// scambio effettuato, interrompo il ciclo
-				return SUCCESS;
-			}
 		}
 
 		lista = lista->prossimoElemento;
