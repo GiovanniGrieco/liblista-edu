@@ -1,0 +1,17 @@
+#!/bin/bash
+mkdir -p build || exit
+cd build
+
+clang -c ../LibLista.c -o LibLista.o -std=c11 -Wall -Wextra -Wpedantic -Werror 	\
+	-Wshadow -Wstrict-overflow -fno-strict-aliasing 							\
+	-Wno-missing-field-initializers || exit
+libtool -dynamic LibLista.o -o liblista.dylib -lSystem || exit
+
+clang -c ../esempi.c -o esempi.o -std=c11 -Wall -Wextra -Wpedantic -Werror 		\
+	-Wshadow -Wstrict-overflow -fno-strict-aliasing 							\
+	-Wno-missing-field-initializers	|| exit
+
+ld -demangle -dynamic -arch x86_64 -macosx_version_min 10.11.0 -lSystem -L.    \
+	-llista esempi.o -o test
+
+rm *.o

@@ -1,0 +1,17 @@
+#!/bin/bash
+mkdir -p build || exit
+cd build
+
+clang -c ../LibLista.c -o LibLista.o -std=c11 -Wall -Wextra -Wpedantic -Werror	\
+	-Wshadow -Wstrict-overflow -fno-strict-aliasing								\
+	-Wno-missing-field-initializers -fPIC || exit
+clang -shared -Wl,-soname,liblista.so -o liblista.so LibLista.o || exit
+
+clang ../esempi.c -o test -std=c11 -Wall -Wextra -Wpedantic -Werror		\
+	-Wshadow -Wstrict-overflow -fno-strict-aliasing								\
+	-Wno-missing-field-initializers	-L. -llista || exit
+
+rm *.o
+echo "La libreria dinamica liblista.so sarà per essere installata in /usr/lib."
+echo "Saranno necessari privilegi di amministrazione."
+sudo cp liblista.so /usr/lib/
