@@ -17,7 +17,7 @@
  *
  * I left here my email address. Feel free to contact me in case something is
  * wrong or just to give me a symbolic "f___ you" if you think my coding skills
- * are terrible. I'm working hard on improving myself, so critiques are welcomed.
+ * are terrible. I'm working hard on improving myself, so critiques are welcomed
  */
 #pragma once
 
@@ -28,14 +28,14 @@
  * NOTE:
  * Struttura della lista:
  *  - Partire SEMPRE a contare da 1, non da zero, a meno che si è sicuri che
- * 		l'end-user non abbia a che fare con ciò;
+ * 	l'end-user non abbia a che fare con ciò;
  *  - Per la numerazione, preferire il metodo di ordinamento in ordine
- *		cronologico crescente;
+ *	cronologico crescente;
  *
  * Utilizzo del typedef:
- * 	I typedef qui sono inutili. Questa lieve opacità di dato rende la
- * 	lista più semplice da utilizzare, senza scrivere keywords aggiuntive e dover
- *	sempre ricordarsi il puntatore a node* per riferirsi alla lista o ad un nodo
+ *  I typedef qui sono inutili. Questa lieve opacità di dato rende la
+ *  lista più semplice da utilizzare, senza scrivere keywords aggiuntive e dover
+ *  sempre ricordarsi il puntatore a node* per riferirsi alla lista o ad un nodo
  */
 
 struct nodeContent {
@@ -101,7 +101,7 @@ int lista_rimuoviElementoNesimo(List lista, int n);
  *	- SUCCESS | (Codice di errore)
  */
 int lista_modificaElementoNesimo(List lista, unsigned int X,
-								NodeData nuovo_contenuto);
+				 NodeData nuovo_contenuto);
 
 /* Distrugge la lista dalla memoria
  * PARAMETRI:
@@ -138,9 +138,9 @@ List lista_capovolgi(List lista);
 
 /* Scambia due nodi di una lista
  * PARAMETRI:
- * 	-	Puntatore al primo elemento della lista memorizzato
- *	-	X-esimo elemento da scambiare con Y
- *	-	Y-esimo elemento da scambiare con X
+ * 	- Puntatore al primo elemento della lista memorizzato
+ *	- X-esimo elemento da scambiare con Y
+ *	- Y-esimo elemento da scambiare con X
  * OUTPUT:
  *	- SUCCESS | (Codice di errore)
  * NOTA:
@@ -150,13 +150,13 @@ int lista_scambiaElementiXY(List lista, unsigned int X, unsigned int Y);
 
 /* Cerca la posizione di un nodo nella lista
  * PARAMETRI:
- *	- Lista interessata
- *	- Modalità di ricerca
- *		0 => tutti i membri della struttura NodeData devono essere uguali
- *		1 => l'etichetta deve essere uguale
- *		2 => il valore deve essere uguale
- *	- Contenuto da ricercare
+ * - Lista interessata
+ * - Modalità di ricerca
+ * 	0 => tutti i membri della struttura NodeData devono essere uguali
+ *	1 => l'etichetta deve essere uguale
+ *	2 => il valore deve essere uguale
+ * - Contenuto da ricercare
  * OUTPUT:
- *	- Posizione dell'elemento all'interno della lista (0 per elemento non trovato)
+ * - Posizione del nodo all'interno della lista (0 per nodo non trovato)
  */
 unsigned int lista_cercaPerContenuto(List lista, int mode, NodeData contenuto);

@@ -17,24 +17,24 @@
  *
  * I left here my email address. Feel free to contact me in case something is
  * wrong or just to give me a symbolic "f___ you" if you think my coding skills
- * are terrible. I'm working hard on improving myself, so critiques are welcomed.
+ * are terrible. I'm working hard on improving myself, so critiques are welcomed
  *
  * La documentazione delle funzioni è disponibile nel file header.
  */
 
-#include <stdlib.h> 	// malloc, free
-#include <stdarg.h>		// variadic functions
-#include <string.h>		// strcmp
+#include <stdlib.h>	// malloc, free
+#include <stdarg.h>	// variadic functions
+#include <string.h>	// strcmp
 
 #include "LibLista.h"
 
 List lista_aggiungiElemento(List lista, NodeData contenuto)
 {
-	// creo il nuovo elemento ed associo un proprio spazio nella memoria heap
+	// creo il nuovo elemento ed associo un proprio spazio nella memoria
 	List el_da_aggiungere = malloc(sizeof(ListNode));
 
-	// memorizzo i dati relativi all'elemento della lista nel nuovo spazio di
-	// memoria allocato
+	// memorizzo i dati relativi all'elemento della lista nel nuovo spazio
+	// di memoria allocato
 	el_da_aggiungere->contenuto 		= contenuto;
 	el_da_aggiungere->prossimoElemento 	= lista;
 
@@ -48,7 +48,8 @@ List lista_aggiungiElementi(List lista, int nElementi, ...)
 
 	va_start(elementi, nElementi);
 	while (nElementi--) {
-		lista = lista_aggiungiElemento(lista, va_arg(elementi, NodeData));
+		lista = lista_aggiungiElemento(lista,
+						va_arg(elementi, NodeData));
 	}
 	va_end(elementi);
 
@@ -57,8 +58,8 @@ List lista_aggiungiElementi(List lista, int nElementi, ...)
 
 List lista_inserisciElementoInX(List lista, unsigned int X, NodeData contenuto)
 {
-	List 	el_index 			= lista,
-			elemento_precedente = NULL;
+	List 	el_index		= lista,
+		elemento_precedente	= NULL;
 
 	unsigned int i = 1, lunghezza_lista = lista_lunghezza(lista);
 	while (lunghezza_lista--) {
@@ -80,7 +81,7 @@ List lista_inserisciElementoInX(List lista, unsigned int X, NodeData contenuto)
 	X = X - i;
 	while (X--) {
 		lista = lista_aggiungiElemento(lista, (NodeData) {
-			.etichetta = (char*) NULL, // si ricorda che NULL è (void*)
+			.etichetta = (char*) NULL,
 			.valore = 0
 		});
 	}
@@ -93,8 +94,8 @@ List lista_inserisciElementoInX(List lista, unsigned int X, NodeData contenuto)
 
 int lista_rimuoviElementoNesimo(List lista, int n)
 {
-	List 	elem_precedente 	= NULL,
-			elem_daEliminare 	= lista;
+	List 	elem_precedente  = NULL,
+		elem_daEliminare = lista;
 
 	// cerco l'n-esimo nodo nella lista
 	int i = 1;
@@ -114,7 +115,7 @@ int lista_rimuoviElementoNesimo(List lista, int n)
 }
 
 int lista_modificaElementoNesimo(List lista, unsigned int X,
-								NodeData nuovo_contenuto)
+				 NodeData nuovo_contenuto)
 {
 	unsigned int nElementi = lista_lunghezza (lista);
 
@@ -158,7 +159,8 @@ List lista_capovolgi(List lista)
 	List listaCapovolta = NULL, vecchiaLista = lista;
 
 	do {
-		listaCapovolta = lista_aggiungiElemento (listaCapovolta, lista->contenuto);
+		listaCapovolta = lista_aggiungiElemento(listaCapovolta,
+							lista->contenuto);
 	} while ((lista = lista->prossimoElemento) != NULL);
 
 	// svuota la memoria allocata alla vecchia lista
@@ -177,8 +179,8 @@ int lista_scambiaElementiXY(List lista, unsigned int X, unsigned int Y)
 			if (elemento_precedente == NULL) {
 				elemento_precedente = &lista->contenuto;
 			} else {
-				// creo un ausiliare temporaneo e ci copio il contenuto
-				// dell'elemento precedente
+				// creo un ausiliare temporaneo e ci copio il
+				// contenuto dell'elemento precedente
 				NodeData ausiliare = *elemento_precedente;
 				// procedo alla sostituzione
 				*elemento_precedente = lista->contenuto;

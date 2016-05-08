@@ -17,7 +17,7 @@
  *
  * I left here my email address. Feel free to contact me in case something is
  * wrong or just to give me a symbolic "f___ you" if you think my coding skills
- * are terrible. I'm working hard on improving myself, so critiques are welcomed.
+ * are terrible. I'm working hard on improving myself, so critiques are welcomed
  */
 
 #include <stdio.h>
@@ -30,7 +30,8 @@ void __stampaLista(List lista)
 	puts("Elementi:");
 	List i = lista;
 	do {
-		printf("\t> %s, %d\n", i->contenuto.etichetta, i->contenuto.valore);
+		printf("\t> %s, %d\n", i->contenuto.etichetta,
+			i->contenuto.valore);
 	} while ((i = i->prossimoElemento) != NULL);
 }
 
@@ -130,7 +131,8 @@ void esempio_inserisciElementoInX(int posizione)
 		.valore 	= 111
 	};
 
-	listesempio = lista_inserisciElementoInX(listesempio, posizione, dati_da_inserire);
+	listesempio = lista_inserisciElementoInX(listesempio, posizione,
+						 dati_da_inserire);
 
 	__stampaLista(listesempio);
 
