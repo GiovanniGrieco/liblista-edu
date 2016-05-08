@@ -119,7 +119,7 @@ void esempio_modificaSecondoElemento()
 	}
 
 	// distruggi la lista e libera la memoria heap occupata
-	lista_distruggi (listesempio);
+	lista_distruggi(listesempio);
 }
 
 void esempio_inserisciElementoInX(int posizione)

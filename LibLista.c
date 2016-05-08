@@ -200,28 +200,17 @@ int lista_scambiaElementiXY(List lista, unsigned int X, unsigned int Y)
 unsigned int lista_cercaPerContenuto(List lista, int mode, NodeData contenuto)
 {
 	List i = lista;
-	int pos = 1;
+	int	pos = 1,
+		verif_etichetta = (!mode || mode == 1) ? 1 : 0,
+		verif_valore 	= (!mode || mode == 2) ? 1 : 0;
 
-	if (mode == 1) {
-		do {
-			if (!strcmp(contenuto.etichetta, i->contenuto.etichetta))
-				return pos;
-			pos++;
-		} while ((i = i->prossimoElemento) != NULL);
-	} else if (mode == 2) {
-		do {
-			if (contenuto.valore == i->contenuto.valore)
-				return pos;
-			pos++;
-		} while ((i = i->prossimoElemento) != NULL);
-	} else if (mode == 0) {
-		do {
-			if (!strcmp(contenuto.etichetta, i->contenuto.etichetta) &&
-				contenuto.valore == i->contenuto.valore)
-				return pos;
-			pos++;
-		} while ((i = i->prossimoElemento) != NULL);
-	}
+	do {
+		if ((!strcmp(contenuto.etichetta, i->contenuto.etichetta) ||
+		     !verif_etichetta) &&
+		    (contenuto.valore == i->contenuto.valore || !verif_valore))
+			return pos;
+		pos++;
+	} while((i = i->prossimoElemento) != NULL);
 
 	return 0; // elemento non trovato
 }
