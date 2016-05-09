@@ -21,6 +21,7 @@
  */
 
 #include <stdio.h>
+#include <string.h>
 
 #include "LibLista.h"
 
@@ -51,6 +52,23 @@ List __inizializzaListaEsempio()
 			.valore 	= 999
 		}
 	);
+}
+
+unsigned int __esempio_cercaPerContenuto(List lista, int mode, NodeData nodoDaCercare) {
+	List i = lista;
+	int	pos = 1,
+		verif_etichetta = (!mode || mode == 1) ? 1 : 0,
+		verif_valore 	= (!mode || mode == 2) ? 1 : 0;
+
+	do {
+		if ((!strcmp(nodoDaCercare.etichetta, i->contenuto.etichetta) ||
+		     !verif_etichetta) &&
+		    (nodoDaCercare.valore == i->contenuto.valore || !verif_valore))
+			return pos;
+		pos++;
+	} while((i = i->prossimoElemento) != NULL);
+
+	return 0; // elemento non trovato
 }
 
 void esempio_stampaElementi(int ordInverso)
@@ -149,9 +167,9 @@ void esempio_cercaElemento()
 {
 	List listesempio = __inizializzaListaEsempio();
 
-	int pos = lista_cercaPerContenuto(listesempio, (NodeData) {
+	int pos = __esempio_cercaPerContenuto(listesempio, 0, (NodeData) {
 		.etichetta = "Esempio2",
-		.valore = 999
+		.valore = 444
 	});
 
 	printf("Posizione dell'elemento: %d\n", pos);

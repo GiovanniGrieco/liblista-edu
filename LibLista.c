@@ -203,30 +203,3 @@ int lista_scambiaElementiXY(List lista, unsigned int X, unsigned int Y)
 	// il ciclo è terminato senza scambi
 	return ENOTFOUND;
 }
-
-unsigned int lista_cercaPerContenuto(List lista, NodeData contenuto)
-{
-	List i = lista;
-	int	pos = 1,
-		simil = 0,
-		counter = 0,
-		maxCnt = 0;
-
-	do {
-		counter = 0;
-
-		for (unsigned int j = 0; j < sizeof(NodeData); j++)
-			if ((((const unsigned char *) &i->contenuto)[j] & 0xFF)
-			    == (((const unsigned char *) &contenuto)[j] & 0xFF))
-				counter++;
-
-		if (counter > maxCnt) {
-			maxCnt = counter;
-			simil = pos;
-		}
-
-		pos++;
-	} while ((i = i->prossimoElemento) != NULL);
-
-	return simil;
-}

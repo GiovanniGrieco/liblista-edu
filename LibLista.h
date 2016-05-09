@@ -31,6 +31,8 @@
  * 	l'end-user non abbia a che fare con ciò;
  *  - Per la numerazione, preferire il metodo di ordinamento in ordine
  *	cronologico crescente;
+ *  - La libreria è type-agnostic, quindi si può cambiare la struttura dati di
+ *	nodeContent. Così facendo non si potrà più fare riferimento agli esempi;
  *
  * Utilizzo del typedef:
  *  I typedef qui sono inutili. Questa lieve opacità di dato rende la
@@ -38,15 +40,15 @@
  *  sempre ricordarsi il puntatore a node* per riferirsi alla lista o ad un nodo
  */
 
-struct nodeContent {
+struct esempio__nodeContent {
 	char	*etichetta;
 	int 	valore;
 };
-typedef struct nodeContent NodeData;
+typedef struct esempio__nodeContent NodeData;
 
 struct node {
-	struct nodeContent 	contenuto;
-	struct node 		*prossimoElemento;
+	NodeData contenuto;
+	struct node *prossimoElemento;
 };
 typedef struct node  ListNode;
 typedef struct node* List;
@@ -147,12 +149,3 @@ List lista_capovolgi(List lista);
  * Scambio solo il contenuto dei nodi
  */
 int lista_scambiaElementiXY(List lista, unsigned int X, unsigned int Y);
-
-/* Cerca la posizione di un nodo nella lista
- * PARAMETRI:
- * - Lista interessata
- * - Contenuto da ricercare
- * OUTPUT:
- * - Posizione del nodo più simile (o uguale) all'interno della lista
- */
-unsigned int lista_cercaPerContenuto(List lista, NodeData contenuto);
