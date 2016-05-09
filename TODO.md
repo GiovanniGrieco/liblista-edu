@@ -1,4 +1,4 @@
 # TODO
 
-- Ottimizzare e semplificare il codice di *lista_cercaPerContenuto*
+- Metodi per ordinare la lista
 - ???
